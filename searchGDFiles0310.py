@@ -37,7 +37,7 @@ def main():
     # Call the Drive v3 API
 
     results = service.files().list(
-        pageSize=5, fields="nextPageToken, files(name, modifiedTime, mimeType, id, parents)").execute()
+        pageSize=5, fields="nextPageToken, files(name, modifiedTime, mimeType, id, parents, childern").execute()
     items = results.get('files', [])
     page = results.get('nextPageToken', [])
 
