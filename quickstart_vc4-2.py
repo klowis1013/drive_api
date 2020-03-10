@@ -42,13 +42,16 @@ def main():
     page = results.get('nextPageToken', [])
 
     sys.stdout = open('output.txt', 'w')
+    print(u'{0}, {1}, {2}, {3}, {4}'.format('name', 'modifiedTime', 'mimeType', 'id', 'parents'))
+    
+    sys.stdout = open('output.txt', 'a')
 
     if not items:
         print('No files found.')
     else:
         for item in items:
             print(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
-            # print(item)
+            # print(item) 
 
     sys.stdout = open('output.txt', 'a')
     i=1
