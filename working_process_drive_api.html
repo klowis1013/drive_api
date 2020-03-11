@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang = "ko">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+<head>
+  <title> 작업계획 </title>
+  <style>
+    body {
+      font-family : "굴림";
+      line-height : 200%;
+      font-size : 20px;
+    }
+    h1 {
+      font-weight : 100px;
+      text-align: center;
+      border-bottom: 1px solid gray;
+      margin: 0px;
+      padding-bottom: 5px;
+    }
+    .container{
+      display: grid;
+      grid-template-columns: 120px 400PX 400PX 400PX 1fr;
+      grid-template-areas:
+        "itemArea0 itemArea1 itemArea2 itemArea3 itemArea4";
+      border-right: 1px solid gray;
+    }
+    .item {
+      border-right: 1px solid gray;
+      margin-top: 0px;
+      padding-top: 30px;
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+    .area0{
+      grid-area: itemArea0;
+      padding-top: 0px;
+    }
+    .area1{
+      grid-area: itemArea1;
+    }
+    .area2{
+      grid-area: itemArea2;
+    }
+    .area3{
+      grid-area: itemArea3;
+    }
+    h4 {
+      display:inline;
+      font-size : 22px;
+      color : #8A084B;
+      font-weight: 800;
+      text-decoration:underline;
+    }
+    li {
+      font-size : 18px;
+      color : #585858
+    }
+    .completed {
+      text-decoration:line-through;
+      color:#E6E6E6;
+    }
+  </style>
+  <script>
+    function progressCheck(self){
+      if(self.value === 'in progress') {
+        self.value = 'completed';
+        self.parentNode.style.textDecoration = 'line-through';
+        self.parentNode.style.color = '#E6E6E6';
+        } else {
+        self.value = 'in progress';
+        self.parentNode.style.textDecoration = 'none';
+        self.parentNode.style.color = '#585858';
+        }
+    }
+
+  </script>
+<body>
+  <h2>프로젝트 진행절차
+  <h1> 학당 백업파일 관리시스템 만들기 </h1>
+    <p style=margin:0px>
+      <div class="container">
+        <div class="item area0">
+          <h3 style="margin-top:0px">진행상황</h3>
+        </div>
+        <div class="item area1">
+          <h4 class="division"> 기획 </h4>
+            <ol>
+              <li id="itemToCheck" class="completed"> 요구 사항 정리 <input style="display:inline" class="checkingButton" type="button"      value="completed" onclick="progressCheck(this)"></li>
+              <li id="itemToCheck" class="completed"> 스토리보드 수기 작성 <input style="display:inline" class="checkingButton" type="button"   value="completed" onclick="progressCheck(this)"></li>
+            </ol> </br>
+        </div>
+        <div class="item area2">
+          <h4 class="division"> 개발환경 구축</h4>
+            <ol>
+              <li id="itemToCheck"> 요구 개발환경요소 개괄 및 설치
+                <ul>
+                  <li id="itemToCheck" class="completed">> 리눅스 <input style="display:inline" class="checkingButton" type="button"       value="completed" onclick="progressCheck(this)"></li>
+                  <li id="itemToCheck" class="completed">> AWS 인스턴스 <input style="display:inline" class="checkingButton" type="button"  value="completed" onclick="progressCheck(this)"></li>
+                  <li id="itemToCheck" class="completed">> 파이썬3 <input style="display:inline" class="checkingButton" type="button"      value="completed" onclick="progressCheck(this)"></li>
+                  <li id="itemToCheck" class="completed">> IDE <input style="display:inline" class="checkingButton" type="button"       value="completed" onclick="progressCheck(this)"></li>
+                </ul>
+              <li id="itemToCheck" class="completed"> 관리 데이터 명세 <input style="display:inline" class="checkingButton" type="button"      value="completed" onclick="progressCheck(this)"></li>
+            </ol> </br>
+        </div>
+        <div class="item area3">
+          <h4 class="division"> 정리사항 </h4>
+            <ol>
+              <ul>
+                <li id="itemToCheck"> AWS EC2
+                  <ul>
+                    <li id="itemToCheck" class="completed"> 인스턴스 오픈방법 <input style="display:inline" class="checkingButton" type="button"  value="completed" onclick="progressCheck(this)"></li>
+                    <li id="itemToCheck" class="completed"> 요구 사양 과금정책 <input style="display:inline" class="checkingButton" type="button" value="completed" onclick="progressCheck(this)"></li>
+                  </ul>
+                <li id="itemToCheck"> 파이썬3
+                  <ul>
+                    <li id="itemToCheck" class="completed"> IDE <input style="display:inline" class="checkingButton" type="button"            value="completed" onclick="progressCheck(this)"></li>
+                    <li id="itemToCheck" class="completed"> 데이터프레임 개념 적용방법 <input style="display:inline" class="checkingButton" type="button" value="completed" onclick="progressCheck(this)"></li>
+                    <li id="itemToCheck" class="completed"> 작업단위 모듈화 방법 <input style="display:inline" class="checkingButton" type="button"    value="completed" onclick="progressCheck(this)"></li>
+                  </ul>
+                <li id="itemToCheck"> 깃
+                  <ul>
+                    <li id="itemToCheck" class="completed"> 버전관리 <input style="display:inline" class="checkingButton" type="button" value="completed" onclick="progressCheck(this)"></li>
+                    <li id="itemToCheck" class="completed"> 백업관리 <input style="display:inline" class="checkingButton" type="button" value="completed" onclick="progressCheck(this)"></li>
+                    <li id="itemToCheck"> 소스공유 <input style="display:inline" class="checkingButton" type="button"                   value="in progress" onclick="progressCheck(this)"></li>
+                  </ul>
+                <li id="itemToCheck"> 구글API 
+                <ul>
+                  <li id="itemToCheck" class="completed"> Credentials 및 Scope <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)"></li>
+                  <li id="itemToCheck" class="completed"> 데이터 조회 표준 파이썬 소스코드 수집 및 분석 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)"></li>
+                  <li id="itemToCheck"> 데이터 업로드 표준 파이썬 소스코드 수집 및 분석 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)"></li>
+                </ul>
+              </ul>
+            </ol> </br>
+        </div>
+        <div class="item area4">
+          <h4 class="division"> 소스코드 작성 </h4>
+            <ol>
+              <li> 구글드라이브 데이터 테이블 </li>
+                <ul>
+                  <li id="itemToCheck" class="completed"> AWS에서 구글 드라이브 연결 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)"></li>
+                  <li id="itemToCheck" class="completed"> 데이터 정보 가져오기 <input style="display:inline" class="checkingButton" type="button"      value="in progress" onclick="progressCheck(this)"></li>
+                  <li id="itemToCheck"> 데이터프레임 형태로 변형 <input style="display:inline" class="checkingButton" type="button"                      value="in progress" onclick="progressCheck(this)"></li>
+                  <li id="itemToCheck"> 폴더 메타정보 작성 <input style="display:inline" class="checkingButton" type="button"                         value="in progress" onclick="progressCheck(this)"></li>
+                  <li id="itemToCheck"> 메타정보 테이블 작성 <input style="display:inline" class="checkingButton" type="button"                        value="in progress" onclick="progressCheck(this)">
+                  <li id="itemToCheck"> 파이썬 코드 모듈화 <input style="display:inline" class="checkingButton" type="button"                         value="in progress" onclick="progressCheck(this)">
+                </ul> </br>
+                <li> NAS 데이터 테이블 </li>
+                  <ul>
+                    <li id="itemToCheck"> NAS SSH연결 활성화 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)"></li>
+                    <li id="itemToCheck"> NAS-AWS 간 SSH 연결 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)"></li>
+                    <li id="itemToCheck"> NAS에 파이썬 설치 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)"></li>
+                    <li id="itemToCheck"> 파이썬에서 NAS 특정 폴더 데이터 조회 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)"></li>
+                    <li id="itemToCheck"> NAS 메타정보 테이블 작성 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)">
+                  </ul> </br>
+              <li> 데이터 업로드 </li>
+                <ul>
+                  <li id="itemToCheck"> NAS에서 구글API 접속 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)"></li>
+                  <li id="itemToCheck"> 데이터 올려보기 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)"></li>
+                  <li id="itemToCheck"> 폴더 위계에 따라 올리기 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)"></li>
+                  <li id="itemToCheck"> 파이썬 코드 모듈화 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)">
+                </ul> </br>
+              <li> 24시간 동작시스템 </li>
+                <ul>
+                  <li id="itemToCheck"> 구글드라이브 파일목록 비교레포트 작성 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)">
+                  <li id="itemToCheck"> 구글-나스 간 파일목록 비교레포트 작성 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)">
+                  <li id="itemToCheck"> 업로드할 파일 메타정보 작성 <input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)">
+                  <li id="itemToCheck"> 리눅스 스케쥴링 - 파이썬 프로그램 발동<input style="display:inline" class="checkingButton" type="button" value="in progress" onclick="progressCheck(this)"></li>
+                </ul> </br>
+            </ol>
+        </div>
+      </div>
+    </p>
