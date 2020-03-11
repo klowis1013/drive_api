@@ -7,6 +7,8 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
 # If modifying these scopes, delete the file token.pickle.
+# 'https://www.googleapis.com/auth/drive.metadata.readonly' View metadata for files in your Google Drive
+# 'https://www.googleapis.com/auth/drive/file' View and Google Drive files and folders that you have opened or created with this app
 SCOPES = ['https://www.googleapis.com/auth/drive.metadata.readonly']
 
 def main():
@@ -35,9 +37,8 @@ def main():
     service = build('drive', 'v3', credentials=creds)
 
     # Call the Drive v3 API
-
     results = service.files().list(
-        pageSize=5, fields="nextPageToken, files(name, modifiedTime, mimeType, id, parents, childern").execute()
+        pageSize=5, fields="nextPageToken, files(name, modifiedTime, mimeType, id, parents").execute()
     items = results.get('files', [])
     page = results.get('nextPageToken', [])
 
@@ -50,7 +51,8 @@ def main():
         print('No files found.')
     else:
         for item in items:
-            print(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
+            return(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
+            # print(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
             # print(item) 
 
     #sys.stdout = open('output.txt', 'a')
@@ -66,7 +68,8 @@ def main():
             break
         else:
             for item in items:
-                print(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
+                return(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
+                # print(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
                 # print(item)
         i=None
 
