@@ -38,29 +38,33 @@ def main():
 
     # Call the Drive v3 API
     results = service.files().list(
-        pageSize=5, fields="nextPageToken, files(name, modifiedTime, mimeType, id, parents").execute()
+        pageSize=1000, fields="nextPageToken, files(name, modifiedTime, mimeType, id, parents)").execute()
     items = results.get('files', [])
     page = results.get('nextPageToken', [])
+ 
+    sys.stdout = open('output.txt', 'w')
 
-    #sys.stdout = open('output.txt', 'w')
     print(u'{0}, {1}, {2}, {3}, {4}'.format('name', 'modifiedTime', 'mimeType', 'id', 'parents'))
     
-    #sys.stdout = open('output.txt', 'a')
+    sys.stdout = open('output.txt', 'a')
 
     if not items:
         print('No files found.')
     else:
         for item in items:
-            return(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
-            # print(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
-            # print(item) 
+            if 'parents' in item:
+            # return(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
+                print(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
+            # print(item)
+            else:
+                print(u'{0}, {1}, {2}, {3},'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id']))
 
-    #sys.stdout = open('output.txt', 'a')
-    i=1
-    while i==1:
-    #while page:
+    sys.stdout = open('output.txt', 'a')
+    #i=1
+    #while i==1:
+    while page:
         results = service.files().list(
-            pageSize=5, pageToken=page, fields="nextPageToken, files(name, modifiedTime, mimeType, id, parents)").execute()
+            pageSize=1, pageToken=page, fields="nextPageToken, files(name, modifiedTime, mimeType, id, parents)").execute()
         items = results.get('files', [])
         page = results.get('nextPageToken', [])
 
@@ -68,10 +72,14 @@ def main():
             break
         else:
             for item in items:
-                return(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
-                # print(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
-                # print(item)
-        i=None
+                if 'parents' in item:
+                    # return(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
+                    print(u'{0}, {1}, {2}, {3}, {4}'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id'], item['parents']))
+                    # print(item)
+                else:
+                    print(u'{0}, {1}, {2}, {3},'.format(item['name'], item['modifiedTime'], item['mimeType'], item['id']))
+
+     #   i=None
 
 if __name__ == '__main__':
     main()
